@@ -1,0 +1,81 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+    text-align: center;
+    margin: 0;
+}
+
+#startScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#startScreen {
+    background-image: url('image (2).png'); /* تأكد من إضافة الصورة في المجلد */
+    background-size: cover;
+}
+
+#gameArea {
+    width: 400px;
+    height: 600px;
+    border: 2px solid #00796b;
+    border-radius: 10px; /* حدود دائرية */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* ظل */
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.block {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* ظل للكتل */
+    transition: transform 0.2s ease; /* سلاسة في الحركة */
+}
+
+.block:hover {
+    transform: scale(1.1); /* تكبير الكتلة عند المرور عليها */
+}
+
+#score {
+    font-size: 24px;
+    color: #00796b;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s; /* سلاسة في تغيير الخلفية */
+}
+
+button {
+    padding: 15px 30px; /* زيادة الحجم */
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+#instructions {
+    color: #555;
+    margin-top: 20px;
+    max-width: 300px;
+}
+
+#highScore, #timer {
+    font-size: 20px;
+    color: #00796b;
+    margin-top: 10px;
+}
