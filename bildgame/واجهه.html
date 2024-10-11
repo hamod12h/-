@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة السقوط الحر</title>
+    <link rel="stylesheet" href="واجهه.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div id="startScreen" class="screen">
+        <h1><i class="fas fa-cube"></i> لعبة السقوط الحر</h1>
+        <div class="menu-buttons">
+            <button id="startBtn" class="btn primary-btn"><i class="fas fa-play"></i> ابدأ اللعبة</button>
+            <button id="instructionsBtn" class="btn"><i class="fas fa-info-circle"></i> تعليمات اللعبة</button>
+            <button id="settingsBtn" class="btn"><i class="fas fa-cog"></i> الإعدادات</button>
+            <button id="leaderboardBtn" class="btn"><i class="fas fa-trophy"></i> لوحة المتصدرين</button>
+        </div>
+        <div id="instructions" class="popup" style="display: none;">
+            <h2><i class="fas fa-book"></i> تعليمات اللعبة</h2>
+            <ul>
+                <li><i class="fas fa-hand-pointer"></i> اضغط على الكتل الملونة لجمعها.</li>
+                <li><i class="fas fa-exclamation-triangle"></i> تجنب ترك الكتل تسقط إلى الأسفل!</li>
+                <li><i class="fas fa-bolt"></i> اجمع الكتل بسرعة للحصول على مضاعفات النقاط!</li>
+                <li><i class="fas fa-star"></i> احصل على قوى خاصة عند جمع الكتل الذهبية!</li>
+            </ul>
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="settings" class="popup" style="display: none;">
+            <h2><i class="fas fa-sliders-h"></i> الإعدادات</h2>
+            <div class="setting-item">
+                <label for="soundToggle">تشغيل الصوت:</label>
+                <input type="checkbox" id="soundToggle" checked>
+            </div>
+            <div class="setting-item">
+                <label for="musicToggle">تشغيل الموسيقى:</label>
+                <input type="checkbox" id="musicToggle" checked>
+            </div>
+            <div class="setting-item">
+                <label for="themeSelect">اختر السمة:</label>
+                <select id="themeSelect">
+                    <option value="light">فاتح</option>
+                    <option value="dark">داكن</option>
+                    <option value="neon">نيون</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="difficulty">اختر مستوى الصعوبة:</label>
+                <select id="difficulty">
+                    <option value="easy">سهل</option>
+                    <option value="medium">متوسط</option>
+                    <option value="hard">صعب</option>
+                    <option value="extreme">قاسي</option>
+                </select>
+            </div>
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="leaderboard" class="popup" style="display: none;">
+            <h2><i class="fas fa-trophy"></i> لوحة المتصدرين</h2>
+            <ol id="leaderboardList">
+                <!-- سيتم ملء هذه القائمة ديناميكيًا باستخدام JavaScript -->
+            </ol>
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    
+    <div id="gameArea" style="display: none;">
+        <div id="powerUpIndicator" style="display: none;">
+            <i class="fas fa-bolt"></i> قوة خاصة نشطة!
+        </div>
+    </div>
+    <div id="gameInfo" style="display: none;">
+        <div id="score">النقاط: <span id="scoreCount">0</span></div>
+        <div id="highScore">أعلى النقاط: <span id="highScoreCount">0</span></div>
+        <div id="level">المستوى: <span id="levelCount">1</span></div>
+        <div id="combo">التتابع: <span id="comboCount">x1</span></div>
+        <div id="timer">الوقت المتبقي: <span id="timeCount">30</span> ثواني</div>
+    </div>
+    <div id="progressBar" class="progress">
+        <div id="timeBar" class="progress-bar"></div>
+    </div>
+    
+    <div id="gameOverScreen" class="screen" style="display: none;">
+        <h1><i class="fas fa-flag-checkered"></i> انتهت اللعبة</h1>
+        <p>لديك <span id="finalScore">0</span> نقاط.</p>
+        <p>أعلى مستوى وصلت إليه: <span id="finalLevel">1</span></p>
+        <div class="achievement" id="newAchievement" style="display: none;">
+            <i class="fas fa-medal"></i> إنجاز جديد!
+            <span id="achievementName"></span>
+        </div>
+        <div class="menu-buttons">
+            <button id="restartBtn" class="btn primary-btn"><i class="fas fa-redo"></i> إعادة اللعب</button>
+            <button id="backToMenuBtn" class="btn"><i class="fas fa-home"></i> العودة للقائمة الرئيسية</button>
+        </div>
+        <div id="shareScore">
+            <p>شارك نتيجتك:</p>
+            <button id="shareTwitter" class="btn share-btn"><i class="fab fa-twitter"></i> Twitter</button>
+            <button id="shareFacebook" class="btn share-btn"><i class="fab fa-facebook-f"></i> Facebook</button>
+        </div>
+    </div>
+
+    <div id="pauseScreen" class="screen" style="display: none;">
+        <h2><i class="fas fa-pause"></i> اللعبة متوقفة مؤقتاً</h2>
+        <div class="menu-buttons">
+            <button id="resumeBtn" class="btn primary-btn"><i class="fas fa-play"></i> استئناف</button>
+            <button id="quitBtn" class="btn"><i class="fas fa-sign-out-alt"></i> خروج</button>
+        </div>
+    </div>
+
+    <button id="pauseBtn" class="floating-btn" style="display: none;"><i class="fas fa-pause"></i></button>
+
+    <div id="tutorial" class="popup" style="display: none;">
+        <h2><i class="fas fa-graduation-cap"></i> مرحبًا بك في اللعبة!</h2>
+        <p>هذا دليل سريع لمساعدتك على البدء:</p>
+        <ol>
+            <li>انقر على الكتل الملونة لجمع النقاط.</li>
+            <li>تجنب ترك الكتل تصل إلى أسفل الشاشة.</li>
+            <li>جمع الكتل بسرعة للحصول على مضاعفات النقاط.</li>
+            <li>ابحث عن الكتل الذهبية للحصول على قوى خاصة!</li>
+        </ol>
+        <button id="startTutorial" class="btn primary-btn">ابدأ التجربة</button>
+        <button class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+
+    <script src="واجهه.js"></script>
+</body>
+</html>
